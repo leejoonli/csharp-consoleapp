@@ -1,0 +1,8 @@
+C:\Users\Jeremiah\source\repos\battleships\battleships\bin\Debug\battleships.exe.config
+C:\Users\Jeremiah\source\repos\battleships\battleships\bin\Debug\battleships.exe
+C:\Users\Jeremiah\source\repos\battleships\battleships\bin\Debug\battleships.pdb
+C:\Users\Jeremiah\source\repos\battleships\battleships\obj\Debug\battleships.csproj.AssemblyReference.cache
+C:\Users\Jeremiah\source\repos\battleships\battleships\obj\Debug\battleships.csproj.SuggestedBindingRedirects.cache
+C:\Users\Jeremiah\source\repos\battleships\battleships\obj\Debug\battleships.csproj.CoreCompileInputs.cache
+C:\Users\Jeremiah\source\repos\battleships\battleships\obj\Debug\battleships.exe
+C:\Users\Jeremiah\source\repos\battleships\battleships\obj\Debug\battleships.pdb
