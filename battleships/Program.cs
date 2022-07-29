@@ -12,7 +12,7 @@ namespace battleships
         {
             Ship uss_shwarzenegger = new Ship(20, 5, .7, "Schwarzenegger");
             Ship[] enemy_ships = new Ship[2];
-            int idx = 0;
+            //int idx = 0;
             for (int i = 0; i < enemy_ships.Length; i++)
             {
                 enemy_ships[i] = new Ship(3, 2, .6, "Alien");
@@ -21,38 +21,23 @@ namespace battleships
             string temp = Console.ReadLine();
             if (temp == "yes")
             {
-                Console.WriteLine("Engaging enemy.  Ship incoming.");
-                while(uss_shwarzenegger.hull > 0 && enemy_ships[idx].hull > 0)
+                //Console.WriteLine("Engaging enemy.  Ship incoming.");
+                for (int i = 0; i < enemy_ships.Length; i++)
                 {
-                    //if(idx + 1 <= enemy_ships.Length)
-                    //{
+                    while(uss_shwarzenegger.hull > 0 && enemy_ships[i].hull > 0)
+                    {
                         Console.WriteLine("Would you like to attack?");
                         string attack = Console.ReadLine();
                         if (attack == "yes")
                         {
-                            Battle(uss_shwarzenegger, enemy_ships[idx]);
-                            if (enemy_ships[idx].hull <= 0)
+                            Battle(uss_shwarzenegger, enemy_ships[i]);
+                            if (enemy_ships[i].hull <= 0)
                             {
-                                if (idx > enemy_ships.Length - 1)
-                                {
-                                    Console.WriteLine("You defeated the Alien Ships!  Congratulations!");
-                                    return;
-                                }
-                                Console.WriteLine("Alien ship {0} defeated.  Continue?", idx + 1);
-                                string cont = Console.ReadLine();
-                                if (cont == "yes")
-                                {
-                                    idx++;
-                                }
-                                else if (cont == "no")
-                                {
-                                    Console.WriteLine("Retreating.");
-                                    return;
-                                }
+                                continue;
                             }
                             else
                             {
-                                Battle(enemy_ships[idx], uss_shwarzenegger);
+                                Battle(enemy_ships[i], uss_shwarzenegger);
                                 if (uss_shwarzenegger.hull <= 0)
                                 {
                                     Console.WriteLine("Defeat!");
@@ -65,12 +50,7 @@ namespace battleships
                             Console.WriteLine("Fleeing from combat.");
                             return;
                         }
-                    //}
-                    //else
-                    //{
-                    //    Console.WriteLine("You defeated the Alien Ships!  Congratulations!");
-                    //    return;
-                    //}
+                    }
                 }
             }
             else if (temp == "no")
