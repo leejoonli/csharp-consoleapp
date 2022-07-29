@@ -14,7 +14,7 @@ namespace battleships
             Ship[] enemy_ships = new Ship[5];
             for (int i = 0; i < enemy_ships.Length; i++)
             {
-                enemy_ships[i] = new Ship(3, 2, 1, "Alien");
+                enemy_ships[i] = new Ship(Hull(), Firepower(), Accuracy(), "Alien");
             }
             Console.WriteLine("Start Battleship Console Application?");
             string temp = Console.ReadLine();
@@ -79,6 +79,27 @@ namespace battleships
             {
                 Console.WriteLine("{0} missed", ship_one.name);
             }
+        }
+
+        static int Hull()
+        {
+            Random rd = new Random();
+            int rInt = rd.Next(3, 7);
+            return rInt;
+        }
+
+        static int Firepower()
+        {
+            Random rd = new Random();
+            int rInt = rd.Next(2, 5);
+            return rInt;
+        }
+
+        static double Accuracy()
+        {
+            Random rd = new Random();
+            double rdub = rd.NextDouble() * (.8 - .6) + .6;
+            return rdub;
         }
     }
 
