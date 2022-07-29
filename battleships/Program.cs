@@ -11,8 +11,7 @@ namespace battleships
         static void Main(string[] args)
         {
             Ship uss_shwarzenegger = new Ship(20, 5, .7, "Schwarzenegger");
-            Ship[] enemy_ships = new Ship[2];
-            //int idx = 0;
+            Ship[] enemy_ships = new Ship[5];
             for (int i = 0; i < enemy_ships.Length; i++)
             {
                 enemy_ships[i] = new Ship(3, 2, .6, "Alien");
@@ -21,18 +20,18 @@ namespace battleships
             string temp = Console.ReadLine();
             if (temp == "yes")
             {
-                //Console.WriteLine("Engaging enemy.  Ship incoming.");
                 for (int i = 0; i < enemy_ships.Length; i++)
                 {
                     while(uss_shwarzenegger.hull > 0 && enemy_ships[i].hull > 0)
                     {
-                        Console.WriteLine("Would you like to attack?");
+                        Console.WriteLine("Alien ship incoming.  Would you like to attack?");
                         string attack = Console.ReadLine();
                         if (attack == "yes")
                         {
                             Battle(uss_shwarzenegger, enemy_ships[i]);
                             if (enemy_ships[i].hull <= 0)
                             {
+                                Console.WriteLine("Alien ship {0} destroyed.", i+1);
                                 continue;
                             }
                             else
@@ -40,18 +39,19 @@ namespace battleships
                                 Battle(enemy_ships[i], uss_shwarzenegger);
                                 if (uss_shwarzenegger.hull <= 0)
                                 {
-                                    Console.WriteLine("Defeat!");
+                                    Console.WriteLine("Defeat!  The USS Schwarzenegger has been destroyed.");
                                     return;
                                 }
                             }
                         }
                         else if (attack == "no")
                         {
-                            Console.WriteLine("Fleeing from combat.");
+                            Console.WriteLine("Retreating to resupply.");
                             return;
                         }
                     }
                 }
+                Console.WriteLine("Congratulations! You've defeated the alien ships.  YOU WIN");
             }
             else if (temp == "no")
             {
@@ -69,20 +69,6 @@ namespace battleships
 
         static void Battle(Ship ship_one, Ship ship_two)
         {
-            //if(ship_one.name == "Schwarzenegger")
-            //{
-            //    if(Chance() >= ship_one.accuracy)
-            //    {
-            //        ship_two.hull -= ship_one.firepower;
-            //    }
-            //}
-            //else if (ship_one.name == "Alien")
-            //{
-            //    if (Chance() >= ship_one.accuracy)
-            //    {
-            //        ship_two.hull -= ship_one.firepower;
-            //    }
-            //}
             if(Chance() >= ship_one.accuracy)
             {
                 ship_two.hull -= ship_one.firepower;
