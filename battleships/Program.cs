@@ -14,17 +14,18 @@ namespace battleships
             Ship[] enemy_ships = new Ship[5];
             for (int i = 0; i < enemy_ships.Length; i++)
             {
-                enemy_ships[i] = new Ship(3, 2, .6, "Alien");
+                enemy_ships[i] = new Ship(3, 2, 1, "Alien");
             }
-            Console.WriteLine("Start?");
+            Console.WriteLine("Start Battleship Console Application?");
             string temp = Console.ReadLine();
             if (temp == "yes")
             {
                 for (int i = 0; i < enemy_ships.Length; i++)
                 {
+                    Console.WriteLine("Alien ship {0} incoming.", i+1);
                     while(uss_shwarzenegger.hull > 0 && enemy_ships[i].hull > 0)
                     {
-                        Console.WriteLine("Alien ship incoming.  Would you like to attack?");
+                        Console.WriteLine("Would you like to attack?");
                         string attack = Console.ReadLine();
                         if (attack == "yes")
                         {
@@ -69,7 +70,7 @@ namespace battleships
 
         static void Battle(Ship ship_one, Ship ship_two)
         {
-            if(Chance() >= ship_one.accuracy)
+            if(Chance() <= ship_one.accuracy)
             {
                 ship_two.hull -= ship_one.firepower;
                 Console.WriteLine("{0} did {1} damage to {2}!", ship_one.name, ship_one.firepower, ship_two.name);
