@@ -12,9 +12,10 @@ namespace battleships
         {
             Ship uss_shwarzenegger = new Ship(20, 5, .7, "Schwarzenegger");
             Ship[] enemy_ships = new Ship[5];
+            Random rd = new Random();
             for (int i = 0; i < enemy_ships.Length; i++)
             {
-                enemy_ships[i] = new Ship(Hull(), Firepower(), Accuracy(), "Alien");
+                enemy_ships[i] = new Ship(Hull(rd), Firepower(rd), Accuracy(rd), "Alien");
             }
             Console.WriteLine("Start Battleship Console Application?");
             string temp = Console.ReadLine();
@@ -29,7 +30,7 @@ namespace battleships
                         string attack = Console.ReadLine();
                         if (attack == "yes")
                         {
-                            Battle(uss_shwarzenegger, enemy_ships[i]);
+                            Battle(uss_shwarzenegger, enemy_ships[i], rd);
                             if (enemy_ships[i].hull <= 0)
                             {
                                 Console.WriteLine("Alien ship {0} destroyed.", i+1);
@@ -37,7 +38,7 @@ namespace battleships
                             }
                             else
                             {
-                                Battle(enemy_ships[i], uss_shwarzenegger);
+                                Battle(enemy_ships[i], uss_shwarzenegger, rd);
                                 if (uss_shwarzenegger.hull <= 0)
                                 {
                                     Console.WriteLine("Defeat!  The USS Schwarzenegger has been destroyed.");
@@ -61,16 +62,15 @@ namespace battleships
             }
         }
 
-        static double Chance()
+        static double Chance(Random rd)
         {
-            Random rd = new Random();
             double rand_num = rd.NextDouble();
             return rand_num;
         }
 
-        static void Battle(Ship ship_one, Ship ship_two)
+        static void Battle(Ship ship_one, Ship ship_two, Random rd)
         {
-            if(Chance() <= ship_one.accuracy)
+            if(Chance(rd) <= ship_one.accuracy)
             {
                 ship_two.hull -= ship_one.firepower;
                 Console.WriteLine("{0} did {1} damage to {2}!", ship_one.name, ship_one.firepower, ship_two.name);
@@ -81,23 +81,20 @@ namespace battleships
             }
         }
 
-        static int Hull()
+        static int Hull(Random rd)
         {
-            Random rd = new Random();
             int rInt = rd.Next(3, 7);
             return rInt;
         }
 
-        static int Firepower()
+        static int Firepower(Random rd)
         {
-            Random rd = new Random();
             int rInt = rd.Next(2, 5);
             return rInt;
         }
 
-        static double Accuracy()
+        static double Accuracy(Random rd)
         {
-            Random rd = new Random();
             double rdub = rd.NextDouble() * (.8 - .6) + .6;
             return rdub;
         }
